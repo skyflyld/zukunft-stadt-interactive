@@ -282,15 +282,88 @@
   /* Theme accent override */
   .city-icon { font-size: 28px; margin-bottom: 8px; }
 
-  /* Media queries */
-  @media (max-width: 700px) {
-    .nav { gap: 2px; padding: 0 8px; }
-    .nav-btn { padding: 6px 10px; font-size: 12px; }
-    .cover h1 { font-size: 28px; }
-    .cover .objectives { grid-template-columns: 1fr; }
-    .text-segment { font-size: 17px; padding: 14px 18px; line-height: 1.7; }
-    .text-pager-btn { padding: 8px 18px; font-size: 14px; }
-    .vocab-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  /* === Responsive breakpoints ===
+   * Phone (<480px) → Tablet (480-768) → Desktop default (769-1366) → Large projector (1367+)
+   */
+
+  /* Phone: ≤480px */
+  @media (max-width: 480px) {
+    .nav { gap: 1px; padding: 0 4px; height: 48px; }
+    .nav-btn { padding: 4px 8px; font-size: 11px; }
+    .section { padding: 64px 10px 30px; }
+    h1 { font-size: 20px; }
+    h2 { font-size: 17px; }
+    .card { padding: 14px; }
+    .card-title { font-size: 12px; }
+    .cover { padding: 50px 10px 24px; }
+    .cover h1 { font-size: 24px; }
+    .cover .sub { font-size: 14px; }
+    .cover .badge { font-size: 11px; padding: 3px 10px; }
+    .cover .objectives { grid-template-columns: 1fr; gap: 8px; }
+    .obj-item { padding: 12px; }
+    .obj-item .num { font-size: 20px; }
+    .obj-item .label { font-size: 12px; }
+    .text-segment { font-size: 16px; padding: 12px 14px; line-height: 1.6; }
+    .text-pager { gap: 10px; }
+    .text-pager-btn { padding: 8px 16px; font-size: 13px; min-height: 36px; }
+    .text-pager-info { font-size: 13px; min-width: 44px; }
+    .vocab-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .vocab-card { padding: 10px; }
+    .vocab-card .de { font-size: 14px; }
+    .vocab-card .cn { font-size: 12px; }
+    .exercise .q { font-size: 15px; }
+    .sb-item { font-size: 14px; padding: 10px 12px; }
+    .sb-item .part { font-size: 14px; }
+    .fill-gap { padding: 0 4px; font-size: 14px; }
+    .v-word-tip { font-size: 11px; white-space: normal; max-width: 200px; }
+  }
+
+  /* Tablet: 481-768px */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .nav { gap: 3px; padding: 0 12px; }
+    .nav-btn { padding: 6px 12px; font-size: 12px; }
+    h1 { font-size: 24px; }
+    .cover h1 { font-size: 32px; }
+    .cover .objectives { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .text-segment { font-size: 19px; padding: 16px 20px; line-height: 1.8; }
+    .text-pager-btn { padding: 10px 20px; font-size: 15px; }
+    .vocab-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    .card { padding: 18px; }
+    .exercise .q { font-size: 16px; }
+  }
+
+  /* Large projector screens: 1367px+ */
+  @media (min-width: 1367px) {
+    .section { max-width: 1100px; padding: 80px 40px 50px; }
+    h1 { font-size: 32px; }
+    h2 { font-size: 26px; }
+    .cover h1 { font-size: 48px; }
+    .cover .sub { font-size: 22px; }
+    .cover .badge { font-size: 15px; padding: 6px 18px; }
+    .cover .objectives { max-width: 720px; gap: 16px; }
+    .card { padding: 30px; }
+    .card-title { font-size: 16px; }
+    .text-segment { font-size: 26px; padding: 24px 30px; line-height: 2.0; }
+    .text-segment .tag { font-size: 13px; padding: 3px 10px; }
+    .text-pager-btn { padding: 14px 30px; font-size: 18px; }
+    .text-pager-info { font-size: 17px; }
+    .vocab-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+    .vocab-card { padding: 16px; }
+    .vocab-card .de { font-size: 18px; }
+    .vocab-card .cn { font-size: 15px; }
+    .exercise .q { font-size: 20px; }
+    .sb-item { font-size: 18px; padding: 16px 22px; }
+    .fill-gap { font-size: 18px; }
+    .v-word-tip { font-size: 15px; padding: 6px 14px; }
+  }
+
+  /* Very large screens: 1920px+ */
+  @media (min-width: 1920px) {
+    .section { max-width: 1200px; }
+    .text-segment { font-size: 28px; padding: 28px 36px; }
+    .cover h1 { font-size: 56px; }
+    h1 { font-size: 36px; }
+    .vocab-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
   }
 </style>
 </head>
