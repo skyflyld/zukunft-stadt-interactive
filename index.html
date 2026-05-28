@@ -309,112 +309,118 @@
     cursor: default;
   }
 
-  /* Memory card game */
-  .memory-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+  /* Card connection game */
+  .connect-field {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 16px 0;
+    min-height: 350px;
+  }
+  @media (max-width: 650px) {
+    .connect-field { gap: 20px; flex-direction: column; }
+  }
+  .connect-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     gap: 10px;
-    max-width: 600px;
-    margin: 12px auto;
   }
-  @media (max-width: 550px) {
-    .memory-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  @media (max-width: 650px) {
+    .connect-col { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+    .connect-col .col-label { width: 100%; text-align: center; }
   }
-  .memory-card {
-    aspect-ratio: 3 / 4;
-    perspective: 600px;
+  .connect-col .col-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .connect-card {
+    position: relative;
+    z-index: 2;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 15px;
+    text-align: center;
     cursor: pointer;
     user-select: none;
-  }
-  .memory-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform .5s;
-    transform-style: preserve-3d;
-    border-radius: 10px;
-  }
-  .memory-card.flipped .memory-card-inner {
-    transform: rotateY(180deg);
-  }
-  .memory-card.matched {
-    pointer-events: none;
-  }
-  .memory-card.matched .memory-card-inner {
-    transform: rotateY(180deg);
-  }
-  .memory-card-face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
+    transition: all .2s;
+    border: 2px solid transparent;
     font-weight: 600;
-    font-size: 13px;
-    text-align: center;
-    line-height: 1.4;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
   }
   @media (min-width: 481px) {
-    .memory-card-face { font-size: 14px; }
+    .connect-card { font-size: 16px; padding: 14px 20px; }
   }
-  .memory-card-front {
-    background: linear-gradient(135deg, #1a5276, #2e86c1);
-    color: #fff;
-    font-size: 28px;
-  }
-  .memory-card-back {
-    transform: rotateY(180deg);
-  }
-  .memory-card-back.de {
+  .connect-card.de {
     background: #eaf2f8;
     color: var(--primary);
-    border: 2px solid var(--secondary);
+    border-color: #d4e6f1;
   }
-  .memory-card-back.cn {
+  .connect-card.cn {
     background: #fef8f0;
     color: var(--accent);
-    border: 2px solid var(--accent);
+    border-color: #fdebd0;
   }
-  .memory-card.matched .memory-card-back {
-    opacity: 0.7;
+  .connect-card.de:hover, .connect-card.cn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
-  .memory-card.matched .memory-card-back.de {
-    background: #d5f5e3;
-    border-color: var(--success);
-    color: var(--success);
+  .connect-card.selected {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   }
-  .memory-card.matched .memory-card-back.cn {
-    background: #d5f5e3;
-    border-color: var(--success);
-    color: var(--success);
+  .connect-card.de.selected {
+    border-color: var(--secondary);
+    background: #d4e6f1;
   }
-  .memory-score {
+  .connect-card.cn.selected {
+    border-color: var(--secondary);
+    background: #fdebd0;
+  }
+  .connect-card.matched {
+    background: #d5f5e3 !important;
+    border-color: var(--success) !important;
+    color: #1e8449 !important;
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+  .connect-card.wrong {
+    animation: shake .3s;
+    border-color: #e74c3c !important;
+    background: #fadbd8 !important;
+  }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+  /* SVG connection lines */
+  .connect-lines {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .connect-lines line {
+    stroke-width: 2.5;
+    stroke: var(--success);
+    stroke-dasharray: 6 4;
+    opacity: 0.6;
+  }
+  .connect-score {
     text-align: center;
     font-size: 15px;
     color: var(--text-light);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
-  .memory-actions {
-    text-align: center;
-    margin-top: 12px;
-  }
-  .memory-actions button {
-    padding: 10px 24px;
-    background: var(--secondary);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background .2s;
-    margin: 0 4px;
-  }
-  .memory-actions button:hover { background: var(--primary); }
 
   /* Exercise answer reveal */
   .ex-item {
@@ -908,15 +914,21 @@
   </div>
 
   <div class="card">
-    <div class="card-title">🃏 Aufgabe 15 — Memory (Paare finden)</div>
-    <p style="color:var(--text-light);margin-bottom:8px;">点击翻牌，找到德语和中文的配对。每次翻开两张。</p>
+    <div class="card-title">🔗 Aufgabe 15 — Karten verbinden</div>
+    <p style="color:var(--text-light);margin-bottom:8px;">点击左侧德语词，再点击右侧对应的中文释义——连线配对。</p>
 
-    <div class="memory-score" id="memoryScore">已配对: 0 / 12</div>
-    <div class="memory-grid" id="memoryGrid">
-      <!-- dynamically generated by JS -->
+    <div class="connect-score" id="connectScore">已配对: 0 / 8</div>
+    <div class="connect-field" id="connectField">
+      <svg class="connect-lines" id="connectLines"></svg>
+      <div class="connect-col" id="connectColDe">
+        <div class="col-label">Deutsch</div>
+      </div>
+      <div class="connect-col" id="connectColCn">
+        <div class="col-label">中文</div>
+      </div>
     </div>
-    <div class="memory-actions">
-      <button onclick="initMemory()">🔄 重新洗牌</button>
+    <div style="text-align:center;">
+      <button class="match-btn" onclick="initConnect()">🔄 重新开始</button>
     </div>
   </div>
 </section>
@@ -1086,103 +1098,141 @@ function resetMatch() {
 // Auto-init on page load
 document.addEventListener('DOMContentLoaded', initMatch);
 
-// === Memory game (Aufgabe 15) ===
-const memoryWords = [
-  { de: 'die Urbanisierung', cn: '\u57ce\u5e02\u5316' },
-  { de: 'die Idylle', cn: '\u7530\u56ed\u751f\u6d3b' },
-  { de: 'der G\u00e4rtner', cn: '\u56ed\u4e01' },
-  { de: 'die Nachbarschaft', cn: '\u90bb\u91cc' },
-  { de: 'die Landwirtschaft', cn: '\u519c\u4e1a' },
-  { de: 'das G\u00e4rtnern', cn: '\u56ed\u827a\u52b3\u4f5c' },
-  { de: 'die Bewegung', cn: '\u8fd0\u52a8' },
-  { de: 'die \u00dcberhitzung', cn: '\u8fc7\u70ed' },
-  { de: 'entwickeln', cn: '\u53d1\u5c55' },
-  { de: 'investieren (in)', cn: '\u6295\u8d44' },
-  { de: 'erm\u00f6glichen', cn: '\u4f7f\u53ef\u80fd' },
-  { de: 'der Bericht', cn: '\u62a5\u544a' },
+// === Card connection game (Aufgabe 15) ===
+const connectWords = [
+  { de: 'die Urbanisierung', cn: '城市化' },
+  { de: 'die Idylle', cn: '田园生活' },
+  { de: 'der Gärtner', cn: '园丁' },
+  { de: 'die Nachbarschaft', cn: '邻里' },
+  { de: 'die Landwirtschaft', cn: '农业' },
+  { de: 'das Sommercamp', cn: '夏令营' },
+  { de: 'die Bewegung', cn: '运动' },
+  { de: 'der Bericht', cn: '报告' },
 ];
 
-let firstPick = null;
-let lockBoard = false;
-let memoryMatchCount = 0;
+let connectSelected = null;
+let connectMatched = 0;
 
-function shuffleMemory() {
-  const cards = [];
-  memoryWords.forEach((pair, idx) => {
-    cards.push({ pairIdx: idx, type: 'de', text: pair.de });
-    cards.push({ pairIdx: idx, type: 'cn', text: pair.cn });
-  });
-  for (let i = cards.length - 1; i > 0; i--) {
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [cards[i], cards[j]] = [cards[j], cards[i]];
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
-  return cards;
+  return arr;
 }
 
-function initMemory() {
-  const grid = document.getElementById('memoryGrid');
-  if (!grid) return;
-  firstPick = null;
-  lockBoard = false;
-  memoryMatchCount = 0;
-  document.getElementById('memoryScore').textContent = '\u5df2\u914d\u5bf9: 0 / ' + memoryWords.length;
+function drawConnectLines() {
+  const svg = document.getElementById('connectLines');
+  if (!svg) return;
+  const field = document.getElementById('connectField');
+  const cards = field.querySelectorAll('.connect-card.matched');
+  const fieldRect = field.getBoundingClientRect();
+  svg.setAttribute('viewBox', '0 0 ' + field.offsetWidth + ' ' + field.offsetHeight);
 
-  const cards = shuffleMemory();
-  let html = '';
-  cards.forEach((card, i) => {
-    const backClass = card.type === 'de' ? 'de' : 'cn';
-    html += '<div class="memory-card" data-idx="' + i + '" data-pair="' + card.pairIdx + '" data-type="' + card.type + '" onclick="flipMemory(this)">';
-    html += '  <div class="memory-card-inner">';
-    html += '    <div class="memory-card-face memory-card-front">?</div>';
-    html += '    <div class="memory-card-face memory-card-back ' + backClass + '">' + card.text + '</div>';
-    html += '  </div>';
-    html += '</div>';
+  let lines = '';
+  const pairs = {};
+  cards.forEach(c => {
+    const idx = c.dataset.pair;
+    if (!pairs[idx]) pairs[idx] = [];
+    pairs[idx].push(c);
   });
-  grid.innerHTML = html;
+
+  Object.values(pairs).forEach(pair => {
+    if (pair.length === 2) {
+      const r1 = pair[0].getBoundingClientRect();
+      const r2 = pair[1].getBoundingClientRect();
+      const x1 = r1.left - fieldRect.left + r1.width / 2;
+      const y1 = r1.top - fieldRect.top + r1.height / 2;
+      const x2 = r2.left - fieldRect.left + r2.width / 2;
+      const y2 = r2.top - fieldRect.top + r2.height / 2;
+      lines += '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '"/>';
+    }
+  });
+  svg.innerHTML = lines;
 }
 
-function flipMemory(el) {
-  if (lockBoard) return;
-  if (el.classList.contains('flipped') || el.classList.contains('matched')) return;
+function initConnect() {
+  const colDe = document.getElementById('connectColDe');
+  const colCn = document.getElementById('connectColCn');
+  if (!colDe) return;
 
-  el.classList.add('flipped');
+  connectSelected = null;
+  connectMatched = 0;
+  document.getElementById('connectScore').textContent = '已配对: 0 / ' + connectWords.length;
+  document.getElementById('connectLines').innerHTML = '';
 
-  if (!firstPick) {
-    firstPick = el;
+  let htmlDe = '';
+  connectWords.forEach((pair, i) => {
+    htmlDe += '<div class="connect-card de" data-pair="' + i + '" data-type="de">' + pair.de + '</div>';
+  });
+  colDe.innerHTML = '<div class="col-label">Deutsch</div>' + htmlDe;
+
+  const shuffled = shuffle([...connectWords]);
+  let htmlCn = '';
+  shuffled.forEach((pair) => {
+    const idx = connectWords.indexOf(pair);
+    htmlCn += '<div class="connect-card cn" data-pair="' + idx + '" data-type="cn">' + pair.cn + '</div>';
+  });
+  colCn.innerHTML = '<div class="col-label">中文</div>' + htmlCn;
+
+  document.getElementById('connectField').onclick = function(e) {
+    const card = e.target.closest('.connect-card');
+    if (!card) return;
+    cardClickConnect(card);
+  };
+}
+
+function cardClickConnect(el) {
+  if (el.classList.contains('matched')) return;
+
+  if (el === connectSelected) {
+    el.classList.remove('selected');
+    connectSelected = null;
     return;
   }
 
-  const secondPick = el;
-  const pair1 = firstPick.dataset.pair;
-  const pair2 = secondPick.dataset.pair;
-  const type1 = firstPick.dataset.type;
-  const type2 = secondPick.dataset.type;
+  if (!connectSelected) {
+    connectSelected = el;
+    el.classList.add('selected');
+    return;
+  }
 
-  if (pair1 === pair2 && type1 !== type2) {
-    // Match!
-    firstPick.classList.add('matched');
-    secondPick.classList.add('matched');
-    memoryMatchCount++;
-    document.getElementById('memoryScore').textContent = '\u5df2\u914d\u5bf9: ' + memoryMatchCount + ' / ' + memoryWords.length;
-    firstPick = null;
-    if (memoryMatchCount === memoryWords.length) {
-      setTimeout(() => {
-        document.getElementById('memoryScore').textContent = '\u2705 \u5168\u90e8\u914d\u5bf9\u5b8c\u6210!';
-      }, 300);
+  const first = connectSelected;
+  const second = el;
+
+  if (first.dataset.type === second.dataset.type) {
+    first.classList.remove('selected');
+    connectSelected = el;
+    el.classList.add('selected');
+    return;
+  }
+
+  const deCard = first.dataset.type === 'de' ? first : second;
+  const cnCard = first.dataset.type === 'cn' ? first : second;
+
+  if (deCard.dataset.pair === cnCard.dataset.pair) {
+    deCard.classList.remove('selected');
+    cnCard.classList.remove('selected');
+    deCard.classList.add('matched');
+    cnCard.classList.add('matched');
+    connectMatched++;
+    document.getElementById('connectScore').textContent = '已配对: ' + connectMatched + ' / ' + connectWords.length;
+    connectSelected = null;
+    drawConnectLines();
+    if (connectMatched === connectWords.length) {
+      document.getElementById('connectScore').textContent = '✅ 全部配对完成!';
     }
   } else {
-    // No match - flip back
-    lockBoard = true;
+    second.classList.add('wrong');
     setTimeout(() => {
-      firstPick.classList.remove('flipped');
-      secondPick.classList.remove('flipped');
-      firstPick = null;
-      lockBoard = false;
-    }, 800);
+      second.classList.remove('wrong');
+      first.classList.remove('selected');
+    }, 400);
+    connectSelected = null;
   }
 }
 
-document.addEventListener('DOMContentLoaded', initMemory);
+document.addEventListener('DOMContentLoaded', initConnect);
 </script>
 </body>
 </html>
