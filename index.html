@@ -240,6 +240,39 @@
     border-style: solid;
     background: #d4e6f1;
   }
+  /* Exercise answer reveal */
+  .ex-item {
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    font-size: 16px;
+    line-height: 1.7;
+    border-left: 3px solid var(--secondary);
+    cursor: pointer;
+    transition: background .15s;
+    user-select: none;
+  }
+  .ex-item:hover { background: #f0f4f8; }
+  .ex-item .cn-text { font-weight: 600; color: var(--text); font-size: 17px; }
+  .ex-item .ex-hint {
+    display: inline-block;
+    background: var(--secondary); color: #fff;
+    font-size: 11px; padding: 2px 10px; border-radius: 4px;
+    margin-top: 6px;
+  }
+  .ex-item .ex-answer {
+    display: none;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: #fef8f0;
+    border-radius: 6px;
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 17px;
+  }
+  .ex-item.revealed .ex-answer { display: block; }
+  .ex-item.revealed .ex-hint { display: none; }
 
   /* Sentence builder */
   .sb-item {
@@ -373,9 +406,9 @@
 <nav class="nav">
   <button class="nav-btn active" data-section="cover">🏠 首页</button>
   <button class="nav-btn" data-section="text">📖 课文</button>
+  <button class="nav-btn" data-section="phrases">💡 句型</button>
   <button class="nav-btn" data-section="vocab">📝 词汇</button>
   <button class="nav-btn" data-section="exercises">✏️ 练习</button>
-  <button class="nav-btn" data-section="phrases">💡 句型</button>
 </nav>
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
@@ -445,6 +478,96 @@
       <button class="text-pager-btn" id="textPrev" onclick="changeTextPage(-1)" disabled>◀ 上一页</button>
       <span class="text-pager-info" id="textPageInfo">1 / 3</span>
       <button class="text-pager-btn" id="textNext" onclick="changeTextPage(1)">下一页 ▶</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="s-phrases">
+  <h1>💡 重点句型</h1>
+  <p style="color:var(--text-light);margin-bottom:16px;">课文中的关键句型与语法结构。</p>
+
+  <div class="card">
+    <div class="pattern-box" style="padding:16px;background:#f0f8f0;border-left:4px solid #27ae60;border-radius:0 8px 8px 0;margin-bottom:16px;">
+      <div style="font-size:18px;font-weight:700;margin-bottom:8px;">① sich sehnen + nach + Dat</div>
+      <div style="font-size:16px;line-height:1.7;margin-bottom:6px;"><em>📖 课文：</em>Immer mehr Städter <strong>sehnen</strong> sich <strong>nach</strong> der Natur.</div>
+      <div style="font-size:16px;line-height:1.7;"><em>💬 含义：</em>渴望、想念某人/某物<br>
+      <strong>结构：</strong><code>sich (Akk) sehnen + nach + Dativ</code><br>
+      • Ich sehne mich <strong>nach</strong> meiner Familie.<br>
+      • Wir sehnen uns <strong>nach</strong> dem Frieden.
+      </div>
+    </div>
+
+    <div class="pattern-box" style="padding:16px;background:#f0f8f8;border-left:4px solid #2e86c1;border-radius:0 8px 8px 0;margin-bottom:16px;">
+      <div style="font-size:18px;font-weight:700;margin-bottom:8px;">② durch + Akk 表示"通过……"</div>
+      <div style="font-size:16px;line-height:1.7;margin-bottom:6px;"><em>📖 课文：</em>Durch <strong>Investment</strong> in die Infrastruktur … / Durch <strong>gemeinsame Gartenarbeit</strong> …</div>
+      <div style="font-size:16px;line-height:1.7;"><em>💬 含义：</em>通过某种方式/原因<br>
+      <strong>结构：</strong><code>durch + Akkusativ</code><br>
+      • <strong>Durch</strong> fleißiges Üben hat er Deutsch gelernt.<br>
+      • <strong>Durch</strong> die touristischen Einnahmen hat sich das Leben verbessert.
+      </div>
+    </div>
+
+    <div class="pattern-box" style="padding:16px;background:#fef8f0;border-left:4px solid #e67e22;border-radius:0 8px 8px 0;margin-bottom:16px;">
+      <div style="font-size:18px;font-weight:700;margin-bottom:8px;">③ damit … / um … zu … (目的表达)</div>
+      <div style="font-size:16px;line-height:1.7;margin-bottom:6px;"><em>💬 用法：</em>表达目的——"为了……"</div>
+      <div style="font-size:16px;line-height:1.7;">
+      <strong>Struktur 1 (相同主语)：</strong><code>um … zu + Infinitiv</code><br>
+      • Man gärtnert, <strong>um</strong> die Natur nach Hause <strong>zu bringen</strong>.<br>
+      <strong>Struktur 2 (不同主语)：</strong><code>damit + Nebensatz (Verb am Ende)</code><br>
+      • Die Stadt baut Parks, <strong>damit</strong> die Bewohner sich erholen <strong>können</strong>.
+      </div>
+    </div>
+
+    <div class="pattern-box" style="padding:16px;background:#f0f4ff;border-left:4px solid #1a5276;border-radius:0 8px 8px 0;margin-bottom:16px;">
+      <div style="font-size:18px;font-weight:700;margin-bottom:8px;">④ dass-Satz / ob-Satz (从句语序)</div>
+      <div style="font-size:16px;line-height:1.7;"><em>💬 课文隐含结构：</em>名词性从句，动词在句末<br>
+      • Es ist wichtig, <strong>dass</strong> mehr Grünflächen geschaffen <strong>werden</strong>.<br>
+      • Man fragt sich, <strong>ob</strong> die Stadt grüner <strong>wird</strong>.<br>
+      <strong>规则：</strong>dass/ob 引导的从句中，<strong>动词位于句末</strong>。
+      </div>
+    </div>
+
+    <div class="pattern-box" style="padding:16px;background:#f5f0ff;border-left:4px solid #8e44ad;border-radius:0 8px 8px 0;">
+      <div style="font-size:18px;font-weight:700;margin-bottom:8px;">⑤ 功能动词结构 (Funktionsverbgefüge)</div>
+      <div style="font-size:16px;line-height:1.7;"><em>💬 课文：</em>einen Beitrag <strong>leisten</strong> — 做出贡献<br>
+      <strong>常见搭配：</strong><br>
+      • einen Beitrag <strong>leisten</strong> (zu) → 对……做出贡献<br>
+      • zur Verfügung <strong>stehen</strong> → 可供使用<br>
+      • in Kontakt <strong>kommen</strong> (mit) → 与……接触<br>
+      • Einfluss <strong>haben</strong> (auf) → 对……有影响<br>
+      • Maßnahmen <strong>ergreifen</strong> → 采取措施
+      </div>
+    </div>
+
+    <div class="pattern-box" style="padding:16px;background:#fefefe;border-left:4px solid #c0392b;border-radius:0 8px 8px 0;margin-bottom:16px;">
+      <div style="font-size:18px;font-weight:700;margin-bottom:8px;">⑥ weil / da + Nebensatz (原因从句)</div>
+      <div style="font-size:16px;line-height:1.7;margin-bottom:6px;"><em>📖 课文：</em>Weil ich viel Rad fahre, wünsche ich mir Radschnellwege. / Da ich aus Wuhan komme, wünsche ich mir mehr Grünflächen.</div>
+      <div style="font-size:16px;line-height:1.7;">
+      <strong>结构：</strong><code>weil/da + Subjekt + … + Verb (句末)</code><br>
+      • Weil es in der Stadt laut ist, <strong>sehnen</strong> sich viele Menschen <strong>nach</strong> der Natur.<br>
+      • Da Zhouwo ein Musikdorf ist, <strong>besuchen</strong> viele Touristen <strong>es</strong> jedes Jahr.
+      </div>
+    </div>
+
+    <div class="pattern-box" style="padding:16px;background:#f0fff0;border-left:4px solid #1e8449;border-radius:0 8px 8px 0;margin-bottom:16px;">
+      <div style="font-size:18px;font-weight:700;margin-bottom:8px;">⑦ sich kümmern um + Akk (照顾、照料)</div>
+      <div style="font-size:16px;line-height:1.7;margin-bottom:6px;"><em>📖 课文：</em>Dabei <strong>kümmern</strong> sich mehrere Personen gemeinsam <strong>um</strong> den Garten.</div>
+      <div style="font-size:16px;line-height:1.7;"><em>💬 含义：</em>照顾、关心、负责某事<br>
+      <strong>结构：</strong><code>sich (Akk) kümmern + um + Akkusativ</code><br>
+      • Die Verwaltung <strong>kümmert</strong> sich <strong>um</strong> die Infrastruktur.<br>
+      • Wir <strong>kümmern</strong> uns <strong>um</strong> den Gemeinschaftsgarten.
+      </div>
+    </div>
+
+    <div class="pattern-box" style="padding:16px;background:#fff5f5;border-left:4px solid #e74c3c;border-radius:0 8px 8px 0;">
+      <div style="font-size:18px;font-weight:700;margin-bottom:8px;">⑧ es ist + Adj, dass … / jdm. etw. ermöglichen</div>
+      <div style="font-size:16px;line-height:1.7;margin-bottom:6px;"><em>📖 课文：</em>Es ist <strong>wichtig</strong>, dass man im Hofbräuhaus das Bier probiert. / erm<strong>öglicht</strong> auch soziale Teilhabe von behinderten Menschen.</div>
+      <div style="font-size:16px;line-height:1.7;">
+      <strong>Struktur 1:</strong><code>Es ist + Adj, dass + Satz</code><br>
+      • Es ist <strong>wichtig</strong>, <strong>dass</strong> die Stadt grüner <strong>wird</strong>.<br>
+      <strong>Struktur 2:</strong><code>jdm. etw. ermöglichen</code><br>
+      • Die Radschnellwege <strong>ermöglichen</strong> den Bewohnern, schnell zur Arbeit zu fahren.
+      </div>
     </div>
   </div>
 </section>
@@ -558,12 +681,41 @@
 
 <!-- ═══════ EXERCISES ═══════ -->
 <section class="section" id="s-exercises">
-  <h1>✏️ 练习</h1>
-  <p style="color:var(--text-light);margin-bottom:16px;">点击填入答案的区域可切换显示/隐藏答案。</p>
+  <h1>✏️ 翻译练习 · Übersetzen</h1>
+  <p style="color:var(--text-light);margin-bottom:16px;">点击每个练习框查看参考译文。</p>
 
-  <div class="card exercise">
-    <div class="card-title">📝 Aufgabe 11 — Lesen und antworten</div>
-    <div class="q"><span class="num">a)</span> Was bedeutet „urbanes Gärtnern"? Warum ist das urbane Gärtnern ein neuer Trend geworden?</div>
+  <div class="card">
+    <div class="card-title">🌐 Aufgabe 13 — Übersetzen (klicken zum Auflösen)</div>
+
+    <div class="ex-item" onclick="this.classList.toggle('revealed')">
+      <div class="cn-text">城市乡村化与乡村城市化是重要趋势。</div>
+      <span class="ex-hint">👆 点击显示译文</span>
+      <div class="ex-answer">Die Verdörflichung der Städte und die Verstädterung der Dörfer sind wichtige Trends.</div>
+    </div>
+
+    <div class="ex-item" onclick="this.classList.toggle('revealed')">
+      <div class="cn-text">越来越多的都市人渴望自然。</div>
+      <span class="ex-hint">👆 点击显示译文</span>
+      <div class="ex-answer">Immer mehr Städter sehnen sich nach der Natur.</div>
+    </div>
+
+    <div class="ex-item" onclick="this.classList.toggle('revealed')">
+      <div class="cn-text">他们希望有更多的绿地、更多公园和共享花园。</div>
+      <span class="ex-hint">👆 点击显示译文</span>
+      <div class="ex-answer">Sie wünschen sich mehr Grünflächen, mehr Parks und Gemeinschaftsgärten.</div>
+    </div>
+
+    <div class="ex-item" onclick="this.classList.toggle('revealed')">
+      <div class="cn-text">未来的城市还应该紧凑、环保与人性化，具备快速公共交通、无障碍基础设施与自动驾驶电动汽车。</div>
+      <span class="ex-hint">👆 点击显示译文</span>
+      <div class="ex-answer">Zukünftige Städte sollen kompakt, umweltfreundlich und menschlich sein, mit schnellem öffentlichem Nahverkehr, barrierefreier Infrastruktur und autonomen Elektroautos.</div>
+    </div>
+
+    <div class="ex-item" onclick="this.classList.toggle('revealed')">
+      <div class="cn-text">乡村的人们希望通过城市化改善其生活。</div>
+      <span class="ex-hint">👆 点击显示译文</span>
+      <div class="ex-answer">Die Menschen auf dem Land hoffen, durch die Verstädterung ihr Leben zu verbessern.</div>
+    </div>
     <div class="sb-item">Urbanes Gärtnern bedeutet, dass Stadtbewohner auf Balkonen, Dächern oder in Gemeinschaftsgärten Blumen und Gemüse anbauen. Es ist ein neuer Trend, weil immer mehr Städter sich nach der Natur sehnen und sozialen Kontakt in ihrer Umgebung suchen. <span class="tag-sm" style="background:var(--secondary);color:#fff;font-size:11px;margin-left:6px;">点击显示</span></div>
 
     <div class="q"><span class="num">b)</span> Welche Vorteile hat der Gemeinschaftsgarten?</div>
@@ -575,130 +727,12 @@
     <div class="q"><span class="num">d)</span> Woran zeigt sich die Verstädterung des Dorfs Zhouwo? Welche kulturellen Angebote gibt es dort?</div>
     <div class="sb-item">Die Verstädterung zeigt sich durch Ferienwohnungen, gemütliche Cafés und mehrere schöne Musikparks. Kulturelle Angebote umfassen ein Gitarrenfestival, ein studentisches Musikfest und musikalische Aufführungen. In den letzten drei Jahren haben etwa 600.000 Touristen das Musikdorf besucht. <span class="tag-sm" style="background:var(--secondary);color:#fff;font-size:11px;margin-left:6px;">点击显示</span></div>
   </div>
-
-  <div class="card exercise">
-    <div class="card-title">✍️ Aufgabe 2 — Sätze bilden (klicken zum Auflösen)</div>
-
-    <div class="q"><span class="num">a)</span> Das Gärtnern kann einen wertvollen Beitrag zur Gesundheit leisten, …</div>
-    <div class="sb-item">
-      <span class="part" onclick="this.classList.toggle('revealed')">denn</span>
-      <span class="part" onclick="this.classList.toggle('revealed')">man kann durch den eigenen Anbau von Obst und Gemüse gesunde und frische Lebensmittel produzieren</span>,
-      <span class="part" onclick="this.classList.toggle('revealed')">durch die Bewegung an der frischen Luft seinen Körper trainieren</span>
-      <span class="part" onclick="this.classList.toggle('revealed')">oder sich in der Natur gut entspannen</span>.
-    </div>
-
-    <div class="q"><span class="num">b)</span> Gärten, Straßenbäume und Parks sind umweltfreundlich, …</div>
-    <div class="sb-item">
-      <span class="part" onclick="this.classList.toggle('revealed')">weil</span>
-      <span class="part" onclick="this.classList.toggle('revealed')">man dadurch mehr Grünflächen gegen die Überhitze der Städte schafft</span>
-      <span class="part" onclick="this.classList.toggle('revealed')">und die Luftqualität verbessern kann</span>.
-    </div>
-
-    <div class="q"><span class="num">c)</span> Da …</div>
-    <div class="sb-item">
-      <span class="part" onclick="this.classList.toggle('revealed')">Menschen durch den Austausch miteinander beim gemeinschaftlichen Gärtnern in Kontakt kommen</span>,
-      <span class="part" onclick="this.classList.toggle('revealed')">sind Gemeinschaftsgärten ein gutes Instrument gegen die Anonymität in der Großstadt</span>.
-    </div>
-
-    <div class="q"><span class="num">d)</span> Eine kompakte Stadt ist umweltfreundlich, …</div>
-    <div class="sb-item">
-      <span class="part" onclick="this.classList.toggle('revealed')">weil</span>
-      <span class="part" onclick="this.classList.toggle('revealed')">viele Orte durch kurze Wege erreichbar sind</span>
-      <span class="part" onclick="this.classList.toggle('revealed')">und man keine Autos und Parkplätze braucht</span>.
-    </div>
-
-    <div class="q"><span class="num">e)</span> Elektroautos sind umweltfreundlich, …</div>
-    <div class="sb-item">
-      <span class="part" onclick="this.classList.toggle('revealed')">weil</span>
-      <span class="part" onclick="this.classList.toggle('revealed')">sie mit leiser und sauberer Energie fahren</span>
-      <span class="part" onclick="this.classList.toggle('revealed')">und die Luftverschmutzung und Lärmverschmutzung reduzieren</span>.
-    </div>
-  </div>
-
-  <div class="card exercise">
-    <div class="card-title">🌐 Aufgabe 13 — Übersetzen</div>
-    <div class="sb-item">
-      <strong>城市乡村化与乡村城市化是重要趋势。</strong><br>
-      Die Verdörflichung der Städte und die Verstädterung der Dörfer sind wichtige Trends. <span class="tag-sm" style="background:var(--secondary);color:#fff;font-size:11px;margin-left:6px;">点击显示</span>
-    </div>
-    <div class="sb-item">
-      <strong>越来越多的都市人渴望自然。</strong><br>
-      Immer mehr Städter sehnen sich nach der Natur. <span class="tag-sm" style="background:var(--secondary);color:#fff;font-size:11px;margin-left:6px;">点击显示</span>
-    </div>
-    <div class="sb-item">
-      <strong>他们希望有更多的绿地、更多公园和共享花园。</strong><br>
-      Sie wünschen sich mehr Grünflächen, mehr Parks und Gemeinschaftsgärten. <span class="tag-sm" style="background:var(--secondary);color:#fff;font-size:11px;margin-left:6px;">点击显示</span>
-    </div>
-    <div class="sb-item">
-      <strong>未来的城市还应该紧凑、环保与人性化，具备快速公共交通、无障碍基础设施与自动驾驶电动汽车。</strong><br>
-      Zukünftige Städte sollen kompakt, umweltfreundlich und menschlich sein, mit schnellem öffentlichem Nahverkehr, barrierefreier Infrastruktur und autonomen Elektroautos. <span class="tag-sm" style="background:var(--secondary);color:#fff;font-size:11px;margin-left:6px;">点击显示</span>
-    </div>
-    <div class="sb-item">
-      <strong>乡村的人们希望通过城市化改善其生活。</strong><br>
-      Die Menschen auf dem Land hoffen, durch die Verstädterung ihr Leben zu verbessern. <span class="tag-sm" style="background:var(--secondary);color:#fff;font-size:11px;margin-left:6px;">点击显示</span>
-    </div>
-  </div>
 </section>
 
-<!-- ═══════ PHRASES ═══════ -->
-<section class="section" id="s-phrases">
-  <h1>💡 重点句型</h1>
-  <p style="color:var(--text-light);margin-bottom:16px;">课文中的关键句型与语法结构。</p>
 
-  <div class="card">
-    <div class="pattern-box" style="padding:16px;background:#f0f8f0;border-left:4px solid #27ae60;border-radius:0 8px 8px 0;margin-bottom:16px;">
-      <div style="font-size:18px;font-weight:700;margin-bottom:8px;">① sich sehnen + nach + Dat</div>
-      <div style="font-size:16px;line-height:1.7;margin-bottom:6px;"><em>📖 课文：</em>Immer mehr Städter <strong>sehnen</strong> sich <strong>nach</strong> der Natur.</div>
-      <div style="font-size:16px;line-height:1.7;"><em>💬 含义：</em>渴望、想念某人/某物<br>
-      <strong>结构：</strong><code>sich (Akk) sehnen + nach + Dativ</code><br>
-      • Ich sehne mich <strong>nach</strong> meiner Familie.<br>
-      • Wir sehnen uns <strong>nach</strong> dem Frieden.
-      </div>
-    </div>
 
-    <div class="pattern-box" style="padding:16px;background:#f0f8f8;border-left:4px solid #2e86c1;border-radius:0 8px 8px 0;margin-bottom:16px;">
-      <div style="font-size:18px;font-weight:700;margin-bottom:8px;">② durch + Akk 表示"通过……"</div>
-      <div style="font-size:16px;line-height:1.7;margin-bottom:6px;"><em>📖 课文：</em>Durch <strong>Investment</strong> in die Infrastruktur … / Durch <strong>gemeinsame Gartenarbeit</strong> …</div>
-      <div style="font-size:16px;line-height:1.7;"><em>💬 含义：</em>通过某种方式/原因<br>
-      <strong>结构：</strong><code>durch + Akkusativ</code><br>
-      • <strong>Durch</strong> fleißiges Üben hat er Deutsch gelernt.<br>
-      • <strong>Durch</strong> die touristischen Einnahmen hat sich das Leben verbessert.
-      </div>
-    </div>
+  
 
-    <div class="pattern-box" style="padding:16px;background:#fef8f0;border-left:4px solid #e67e22;border-radius:0 8px 8px 0;margin-bottom:16px;">
-      <div style="font-size:18px;font-weight:700;margin-bottom:8px;">③ damit … / um … zu … (目的表达)</div>
-      <div style="font-size:16px;line-height:1.7;margin-bottom:6px;"><em>💬 用法：</em>表达目的——"为了……"</div>
-      <div style="font-size:16px;line-height:1.7;">
-      <strong>Struktur 1 (相同主语)：</strong><code>um … zu + Infinitiv</code><br>
-      • Man gärtnert, <strong>um</strong> die Natur nach Hause <strong>zu bringen</strong>.<br>
-      <strong>Struktur 2 (不同主语)：</strong><code>damit + Nebensatz (Verb am Ende)</code><br>
-      • Die Stadt baut Parks, <strong>damit</strong> die Bewohner sich erholen <strong>können</strong>.
-      </div>
-    </div>
-
-    <div class="pattern-box" style="padding:16px;background:#f0f4ff;border-left:4px solid #1a5276;border-radius:0 8px 8px 0;margin-bottom:16px;">
-      <div style="font-size:18px;font-weight:700;margin-bottom:8px;">④ dass-Satz / ob-Satz (从句语序)</div>
-      <div style="font-size:16px;line-height:1.7;"><em>💬 课文隐含结构：</em>名词性从句，动词在句末<br>
-      • Es ist wichtig, <strong>dass</strong> mehr Grünflächen geschaffen <strong>werden</strong>.<br>
-      • Man fragt sich, <strong>ob</strong> die Stadt grüner <strong>wird</strong>.<br>
-      <strong>规则：</strong>dass/ob 引导的从句中，<strong>动词位于句末</strong>。
-      </div>
-    </div>
-
-    <div class="pattern-box" style="padding:16px;background:#f5f0ff;border-left:4px solid #8e44ad;border-radius:0 8px 8px 0;">
-      <div style="font-size:18px;font-weight:700;margin-bottom:8px;">⑤ 功能动词结构 (Funktionsverbgefüge)</div>
-      <div style="font-size:16px;line-height:1.7;"><em>💬 课文：</em>einen Beitrag <strong>leisten</strong> — 做出贡献<br>
-      <strong>常见搭配：</strong><br>
-      • einen Beitrag <strong>leisten</strong> (zu) → 对……做出贡献<br>
-      • zur Verfügung <strong>stehen</strong> → 可供使用<br>
-      • in Kontakt <strong>kommen</strong> (mit) → 与……接触<br>
-      • Einfluss <strong>haben</strong> (auf) → 对……有影响<br>
-      • Maßnahmen <strong>ergreifen</strong> → 采取措施
-      </div>
-    </div>
-  </div>
-</section>
 
 <script>
 // === Navigation ===
@@ -715,7 +749,7 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
 });
 
 function updateProgress(section) {
-  const sections = ['cover','text','vocab','exercises','phrases'];
+  const sections = ['cover','text','phrases','vocab','exercises'];
   const idx = sections.indexOf(section);
   const pct = Math.round((idx / (sections.length - 1)) * 100);
   document.getElementById('progressFill').style.width = pct + '%';
